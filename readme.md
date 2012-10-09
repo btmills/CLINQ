@@ -34,3 +34,7 @@ Get the record stored in the first and only node of a linked list. Errors (retur
 	struct node* ll_where(struct node* head, bool (*fn)(unsigned int, void*, void*), void* term);
 
 Create a new linked list of nodes containing only the nodes of a first linked list whose contents satisfy a certain condition.
+*head: Pointer to the first node in a linked list
+*fn: Pointer to a function accepting three arguments (this index of the node in the list, a pointer to the record in the node, and a pointer to the search term to test against) that returns true whenever the record matches the search term
+*term: Pointer to the search term to pass to fn
+*returns: New linked list containing only those elements in the original for which fn returned true
