@@ -17,11 +17,18 @@ All of these are modeled after the equivalent C#/LINQ operation and operate on a
 
 Aggregate an operation over an entire list with an initial value and an accumulator.
 
+* head: Pointer to the first node in a linked list
+* fn: Pointer to a function accepting two arguments (an accumulator and a record) that modifies the accumulated value to include the record's information
+* accum: Pointer to an accumulator. May optionally be initialized with an initial value. Result is stored at accum.
+
 ### Each
 
 	void ll_each(struct node* head, void (*fn)(unsigned int, void*));
 
 Perform an operation for each record in a linked list.
+
+* head: Pointer to the first node in a linked list
+* fn: Pointer to a function accepting two arguments (index of the element in the list and a pointer to the record stored there)
 
 ### Single
 
@@ -29,12 +36,16 @@ Perform an operation for each record in a linked list.
 
 Get the record stored in the first and only node of a linked list. Errors (returns NULL) if the list does not have exactly one node.
 
+* head: Pointer to the first node in a linked list
+* returns: Pointer to the record stored in the first and only element of the list, or NULL if length is not exactly 1.
+
 ### Where
 
 	struct node* ll_where(struct node* head, bool (*fn)(unsigned int, void*, void*), void* term);
 
 Create a new linked list of nodes containing only the nodes of a first linked list whose contents satisfy a certain condition.
-*head: Pointer to the first node in a linked list
-*fn: Pointer to a function accepting three arguments (this index of the node in the list, a pointer to the record in the node, and a pointer to the search term to test against) that returns true whenever the record matches the search term
-*term: Pointer to the search term to pass to fn
-*returns: New linked list containing only those elements in the original for which fn returned true
+
+* head: Pointer to the first node in a linked list
+* fn: Pointer to a function accepting three arguments (this index of the node in the list, a pointer to the record in the node, and a pointer to the search term to test against) that returns true whenever the record matches the search term
+* term: Pointer to the search term to pass to fn
+* returns: New linked list containing only those elements in the original for which fn returned true
